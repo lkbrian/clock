@@ -1,0 +1,12 @@
+.clock-card{
+    box-shadow: -6px 2px 8px 0px rgba(0,255,255,.6),
+    7px 7px 13px -3px rgba(0,255,255,.6),
+    4px 0px 10px -7px rgba(0,255,255,1) inset;
+}
+input{
+    background: none;
+}
+.scale{
+    scale: .8;
+}
+.input{display: none;}

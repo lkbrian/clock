@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Timer with Hours and Minutes Example</title>
+</head>
+<body>
+   <div>
+       <label for="hoursInput">Hours: </label>
+       <input type="number" id="hoursInput" placeholder="0" />
+       <label for="minutesInput">Minutes: </label>
+       <input type="number" id="minutesInput" placeholder="0" />
+       <button onclick="startTimer()">Start Timer</button>
+   </div>
+   <div id="timerDisplay"></div>
+
+   <script>
+       let timerInterval;
+
+       function startTimer() {
+           const hours = parseInt(document.getElementById('hoursInput').value, 10) || 0;
+           const minutes = parseInt(document.getElementById('minutesInput').value, 10) || 0;
+           const totalSeconds = hours * 3600 + minutes * 60;
+
+           if (totalSeconds <= 0 || isNaN(totalSeconds)) {
+               alert('Please enter valid values for hours and minutes.');
+               return;
+           }
+
+           let seconds = totalSeconds;
+
+           timerInterval = setInterval(() => {
+               const displayHours = Math.floor(seconds / 3600);
+               const displayMinutes = Math.floor((seconds % 3600) / 60);
+               const displaySeconds = seconds % 60;
+
+               document.getElementById('timerDisplay').innerText = `${displayHours}h ${displayMinutes}m ${displaySeconds}s`;
+
+               if (seconds <= 0) {
+                   clearInterval(timerInterval);
+                   document.getElementById('timerDisplay').innerText = 'Timer Expired!';
+               }
+
+               seconds--;
+           }, 1000); // Update every second
+       }
+   </script>
+</body>
+</html>
